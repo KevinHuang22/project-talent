@@ -143,10 +143,11 @@ export default class ManageJob extends React.Component {
                     <br/>
                     {jobsListContext}
                 </div>
+                <br />
                 <div align='center'>
                     <Pagination
                         centered
-                        defaultActivePage={5}
+                        defaultActivePage={1}
                         ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                         firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                         lastItem={{ content: <Icon name='angle double right' />, icon: true }}
@@ -155,6 +156,7 @@ export default class ManageJob extends React.Component {
                         totalPages={10}
                     />
                 </div>
+                <br />
             </BodyWrapper>
         )
     }
@@ -198,158 +200,7 @@ export default class ManageJob extends React.Component {
                         </Card>
                     )
                 }
-                <Card>
-                    <Card.Content>
-                        <Image
-                            floated='right'
-                            size='mini'
-                            src='#'
-                        />
-                        <Card.Header>Steve Sanders</Card.Header>
-                        <Card.Meta>Friends of Elliot</Card.Meta>
-                        <Card.Description>
-                            Steve wants to add you to the group <strong>best friends</strong>
-                        </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <div className='ui two buttons'>
-                            <Button basic color='blue'>
-                                Approve
-                            </Button>
-                            <Button basic color='red'>
-                                Decline
-                            </Button>
-                        </div>
-                    </Card.Content>
-                        </Card>
-                <Card>
-                    <Card.Content>
-                        <Image
-                            floated='right'
-                            size='mini'
-                            src='#'
-                        />
-                        <Card.Header>Steve Sanders</Card.Header>
-                        <Card.Meta>Friends of Elliot</Card.Meta>
-                        <Card.Description>
-                            Steve wants to add you to the group <strong>best friends</strong>
-                        </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <div className='ui two buttons'>
-                            <Button basic color='blue'>
-                                Approve
-                            </Button>
-                            <Button basic color='red'>
-                                Decline
-                            </Button>
-                        </div>
-                    </Card.Content>
-                        </Card>
-                        <Card>
-                            <Card.Content>
-                                <Image
-                                    floated='right'
-                                    size='mini'
-                                    src='#'
-                                />
-                                <Card.Header>Steve Sanders</Card.Header>
-                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong>
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <div className='ui two buttons'>
-                                    <Button basic color='blue'>
-                                        Approve
-                            </Button>
-                                    <Button basic color='red'>
-                                        Decline
-                            </Button>
-                                </div>
-                            </Card.Content>
-                        </Card>
-
-
-                        <Card>
-                            <Card.Content>
-                                <Image
-                                    floated='right'
-                                    size='mini'
-                                    src='#'
-                                />
-                                <Card.Header>Steve Sanders</Card.Header>
-                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong>
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <div className='ui two buttons'>
-                                    <Button basic color='blue'>
-                                        Approve
-                            </Button>
-                                    <Button basic color='red'>
-                                        Decline
-                            </Button>
-                                </div>
-                            </Card.Content>
-                </Card>
-
-
-
-                        <Card>
-                            <Card.Content>
-                                <Image
-                                    floated='right'
-                                    size='mini'
-                                    src='#'
-                                />
-                                <Card.Header>Steve Sanders</Card.Header>
-                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong>
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <div className='ui two buttons'>
-                                    <Button basic color='blue'>
-                                        Approve
-                            </Button>
-                                    <Button basic color='red'>
-                                        Decline
-                            </Button>
-                                </div>
-                            </Card.Content>
-                </Card>
-
-
-                        <Card>
-                            <Card.Content>
-                                <Image
-                                    floated='right'
-                                    size='mini'
-                                    src='#'
-                                />
-                                <Card.Header>Steve Sanders</Card.Header>
-                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong>
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <div className='ui two buttons'>
-                                    <Button basic color='blue'>
-                                        Approve
-                            </Button>
-                                    <Button basic color='red'>
-                                        Decline
-                            </Button>
-                                </div>
-                            </Card.Content>
-                        </Card>
-                </div>
+            </div>
         )
     }
 }
