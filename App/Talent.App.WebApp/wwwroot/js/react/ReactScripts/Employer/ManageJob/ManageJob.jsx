@@ -59,7 +59,8 @@ export default class ManageJob extends React.Component {
     //define a function which requires a callback function as paramater
     //this callback function is called inside the succeed/error block
     loadData(callback) {
-        var link = 'http://localhost:51689/listing/listing/getEmployerJobs';
+        //var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
+        var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var cookies = Cookies.get('talentAuthToken');
        // your ajax call and other logic goes here
         $.ajax({
@@ -111,7 +112,7 @@ export default class ManageJob extends React.Component {
                 <div className="ui container">
                     <h2>List of Jobs</h2>
                     <div>
-                        <Icon name='filter' /><text>Filter: &nbsp;</text>
+                        <Icon name='filter' />Filter: &nbsp;
                         <strong>
                             <Dropdown text='Choose filter'>
                                 <Dropdown.Menu>
@@ -130,7 +131,7 @@ export default class ManageJob extends React.Component {
                             </Dropdown>
                         </strong>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <Icon name='calendar alternate' /><text>Sort by date:&nbsp;</text>
+                        <Icon name='calendar alternate' />Sort by date: &nbsp;
                         <strong>
                             <Dropdown text='Newest first'>
                                 <Dropdown.Menu>
@@ -146,7 +147,6 @@ export default class ManageJob extends React.Component {
                 <br />
                 <div align='center'>
                     <Pagination
-                        centered
                         defaultActivePage={1}
                         ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                         firstItem={{ content: <Icon name='angle double left' />, icon: true }}
