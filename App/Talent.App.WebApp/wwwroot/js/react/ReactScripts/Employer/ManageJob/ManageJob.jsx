@@ -47,7 +47,7 @@ export default class ManageJob extends React.Component {
         this.loadData(() => {
             //console.log(loaderData);
             this.setState({ loaderData });
-            //console.log(this.state.loadJobs);
+            console.log(this.state.loadJobs);
         })
         console.log(this.state.loaderData)
     }
@@ -59,7 +59,6 @@ export default class ManageJob extends React.Component {
     //define a function which requires a callback function as paramater
     //this callback function is called inside the succeed/error block
     loadData(callback) {
-        //var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var cookies = Cookies.get('talentAuthToken');
        // your ajax call and other logic goes here
@@ -106,7 +105,7 @@ export default class ManageJob extends React.Component {
     }
 
     render() {
-        let jobsListContext = this.state.loadJobs.length === 0 ? "No Jobs Found" : this.renderJobs(this.state.loadJobs);
+        let jobsListContext = this.state.loadJobs.length == 0 ? "No Jobs Found" : this.renderJobs(this.state.loadJobs);
         return (
             <BodyWrapper reload={this.loadData} loaderData={this.state.loaderData}>
                 <div className="ui container">
