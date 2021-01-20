@@ -59,7 +59,8 @@ export default class ManageJob extends React.Component {
     //define a function which requires a callback function as paramater
     //this callback function is called inside the succeed/error block
     loadData(callback) {
-        var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
+        //var link = 'http://localhost:51689/listing/listing/getemployerjobs';
+        var link = 'https://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var cookies = Cookies.get('talentAuthToken');
        // your ajax call and other logic goes here
         $.ajax({
@@ -106,6 +107,13 @@ export default class ManageJob extends React.Component {
 
     render() {
         let jobsListContext = this.state.loadJobs.length == 0 ? "No Jobs Found" : this.renderJobs(this.state.loadJobs);
+        let totalPage = 0;
+        let totalJobs = this.state.loadJobs.length;
+        if (totalJobs !== 0) {
+            totalPage = Math.ceil(totalJobs / 6);
+            console.log(totalPage);
+        }
+            
         return (
             <BodyWrapper reload={this.loadData} loaderData={this.state.loaderData}>
                 <div className="ui container">
@@ -124,8 +132,6 @@ export default class ManageJob extends React.Component {
                                     <Dropdown.Item icon='trash' text='Move to trash' />
                                     <Dropdown.Divider />
                                     <Dropdown.Item text='Download As...' />
-                                    <Dropdown.Item text='Publish To Web' />
-                                    <Dropdown.Item text='E-mail Collaborators' />
                                 </Dropdown.Menu>
                             </Dropdown>
                         </strong>
@@ -146,13 +152,12 @@ export default class ManageJob extends React.Component {
                 <br />
                 <div align='center'>
                     <Pagination
-                        defaultActivePage={1}
-                        ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                        ellipsisItem={totalPage==0? '' : { content: <Icon name='ellipsis horizontal' />, icon: true }}
                         firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                         lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                         prevItem={{ content: <Icon name='angle left' />, icon: true }}
                         nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                        totalPages={10}
+                        totalPages={ totalPage }
                     />
                 </div>
                 <br />
@@ -199,6 +204,7 @@ export default class ManageJob extends React.Component {
                         </Card>
                     )
                 }
+                
             </div>
         )
     }
