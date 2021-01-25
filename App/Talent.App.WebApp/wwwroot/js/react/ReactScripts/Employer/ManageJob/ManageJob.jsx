@@ -5,6 +5,8 @@ import LoggedInBanner from '../../Layout/Banner/LoggedInBanner.jsx';
 import { LoggedInNavigation } from '../../Layout/LoggedInNavigation.jsx';
 import { JobSummaryCard } from './JobSummaryCard.jsx';
 import { BodyWrapper, loaderData } from '../../Layout/BodyWrapper.jsx';
+import { JobsFilter } from './JobsFilter.jsx';
+import { JobCardsGroup } from './JobCardsGroup.jsx';
 import { Pagination, Icon, Dropdown, Checkbox, Accordion, Form, Segment, Card, Button, Image, Grid, Label } from 'semantic-ui-react';
 
 export default class ManageJob extends React.Component {
@@ -45,9 +47,8 @@ export default class ManageJob extends React.Component {
         //set loaderData.isLoading to false after getting data
         //the loadData() function is called here, an anonymous callback function is passed as paramater
         this.loadData(() => {
-            //console.log(loaderData);
             this.setState({ loaderData });
-            //console.log(this.state.loadJobs);
+            console.log(this.state.loadJobs);
         })
         console.log(this.state.loaderData)
     }
@@ -59,8 +60,8 @@ export default class ManageJob extends React.Component {
     //define a function which requires a callback function as paramater
     //this callback function is called inside the succeed/error block
     loadData(callback) {
-        //var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
-        var link = 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
+        //var link = 'http://localhost:51689/listing/listing/getemployerjobs';
+        var link = 'https://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var cookies = Cookies.get('talentAuthToken');
        // your ajax call and other logic goes here
         $.ajax({
@@ -106,54 +107,36 @@ export default class ManageJob extends React.Component {
     }
 
     render() {
-        let jobsListContext = this.state.loadJobs.length === 0 ? "No Jobs Found" : this.renderJobs(this.state.loadJobs);
+        //let jobsListContext = this.state.loadJobs.length == 0 ? "No Jobs Found" : this.renderJobs(this.state.loadJobs);
+        let totalPage = 0;
+        let totalJobs = this.state.loadJobs.length;
+        if (totalJobs !== 0) {
+            totalPage = Math.ceil(totalJobs / 6);
+            console.log('total pages: ' + totalPage);
+        }
+            
         return (
             <BodyWrapper reload={this.loadData} loaderData={this.state.loaderData}>
                 <div className="ui container">
-                    <h2>List of Jobs</h2>
-                    <div>
-                        <Icon name='filter' />Filter: &nbsp;
-                        <strong>
-                            <Dropdown text='Choose filter'>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item text='New' />
-                                    <Dropdown.Item text='Open...' description='ctrl + o' />
-                                    <Dropdown.Item text='Save as...' description='ctrl + s' />
-                                    <Dropdown.Item text='Rename' description='ctrl + r' />
-                                    <Dropdown.Item text='Make a copy' />
-                                    <Dropdown.Item icon='folder' text='Move to folder' />
-                                    <Dropdown.Item icon='trash' text='Move to trash' />
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item text='Download As...' />
-                                    <Dropdown.Item text='Publish To Web' />
-                                    <Dropdown.Item text='E-mail Collaborators' />
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </strong>
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <Icon name='calendar alternate' />Sort by date: &nbsp;
-                        <strong>
-                            <Dropdown text='Newest first'>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item text='Newest' />
-                                    <Dropdown.Item text='Oldest' />
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </strong>
-                    </div>
-                    <br/>
-                    {jobsListContext}
+                    <h2>
+                        List of Jobs
+                    </h2>
+                    <JobsFilter />
+                    <br />
+                        <JobCardsGroup
+                            jobsList={this.state.loadJobs}
+                            reload={this.loadData}
+                        />
                 </div>
                 <br />
                 <div align='center'>
                     <Pagination
-                        defaultActivePage={1}
-                        ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                        ellipsisItem={totalPage==0? '' : { content: <Icon name='ellipsis horizontal' />, icon: true }}
                         firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                         lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                         prevItem={{ content: <Icon name='angle left' />, icon: true }}
                         nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                        totalPages={10}
+                        totalPages={ totalPage }
                     />
                 </div>
                 <br />
@@ -161,7 +144,7 @@ export default class ManageJob extends React.Component {
         )
     }
 
-    renderJobs(jobsList) {
+    /*renderJobs(jobsList) {
         return (
             <div className='ui three cards'>
                 {
@@ -202,5 +185,5 @@ export default class ManageJob extends React.Component {
                 }
             </div>
         )
-    }
+    }*/
 }

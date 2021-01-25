@@ -81,24 +81,24 @@ export default class TalentMatching extends React.Component {
     //        });
     //}
 
-    //loadJobs(data) { // url: 'http://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs',
+    //loadJobs(data) { // url: 'https://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs',
         
-    //loadSelectedJob(data) url: 'http://talentTalentService.azurewebsites.net/listing/listing/getJobForTalentMatching',
+    //loadSelectedJob(data) url: 'https://talentTalentService.azurewebsites.net/listing/listing/getJobForTalentMatching',
 
-    //loadTalentList()  url: 'http://talentProfileService.azurewebsites.net/profile/profile/getTalentList',
+    //loadTalentList()  url: 'https://talentProfileService.azurewebsites.net/profile/profile/getTalentList',
 
-    //loadTalentFilterList() //url: 'http://talentProfileService.azurewebsites.net/profile/profile/getTalentListFilter',
+    //loadTalentFilterList() //url: 'https://talentProfileService.azurewebsites.net/profile/profile/getTalentListFilter',
 
-    //loadEmployerFilterList() //url: 'http://talentProfileService.azurewebsites.net/profile/profile/getEmployerListFilter',
+    //loadEmployerFilterList() //url: 'https://talentProfileService.azurewebsites.net/profile/profile/getEmployerListFilter',
 
 
-    // loadEmployerList() // url: 'http://talentProfileService.azurewebsites.net/profile/profile/getEmployerList',
-    //loadSuggestionList   url: 'http://talentProfileService.azurewebsites.net/profile/profile/getSuggestionList',
+    // loadEmployerList() // url: 'https://talentProfileService.azurewebsites.net/profile/profile/getEmployerList',
+    //loadSuggestionList   url: 'https://talentProfileService.azurewebsites.net/profile/profile/getSuggestionList',
 
-   // saveCompanyTalents()   url: 'http://talentProfileService.azurewebsites.net/profile/profile/addTalentSuggestions',
+   // saveCompanyTalents()   url: 'https://talentProfileService.azurewebsites.net/profile/profile/addTalentSuggestions',
      
 
-    //saveJobTalents()    url: 'http://talentProfileService.azurewebsites.net/profile/profile/addTalentSuggestions',
+    //saveJobTalents()    url: 'https://talentProfileService.azurewebsites.net/profile/profile/addTalentSuggestions',
        
 
     
