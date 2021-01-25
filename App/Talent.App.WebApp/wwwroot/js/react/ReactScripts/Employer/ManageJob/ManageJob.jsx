@@ -47,7 +47,6 @@ export default class ManageJob extends React.Component {
         //set loaderData.isLoading to false after getting data
         //the loadData() function is called here, an anonymous callback function is passed as paramater
         this.loadData(() => {
-            //console.log(loaderData);
             this.setState({ loaderData });
             console.log(this.state.loadJobs);
         })
@@ -126,6 +125,7 @@ export default class ManageJob extends React.Component {
                     <br />
                         <JobCardsGroup
                             jobsList={this.state.loadJobs}
+                            reload={this.loadData}
                         />
                 </div>
                 <br />

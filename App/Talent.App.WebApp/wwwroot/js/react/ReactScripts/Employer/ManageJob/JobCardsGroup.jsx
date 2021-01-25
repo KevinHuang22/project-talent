@@ -8,12 +8,11 @@ export class JobCardsGroup extends React.Component {
         super(props);
 
         this.state = {
-            jobId:  "",
-            btnDisabled : false,
+            disabled: false,
         }
 
-        this.handleEdit = this.handleEdit.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        //this.handleEdit = this.handleEdit.bind(this);
+        //this.handleStatus = this.handleStatus.bind(this);
     }
 
     handleEdit(id) {
@@ -32,25 +31,31 @@ export class JobCardsGroup extends React.Component {
         console.log('button has been diabled');
     }
 
-    handleClose(id) {
-        if (!window.confirm('Do you want to this job position?'))
+    handleStatus(id, status) {
+        let jobStatus = status == 'closed' ? 'closeJob' : 'reopenJob';
+        if (!window.confirm('Do you want to ' + status +' this job position?'))
             return;
         else {
             var cookies = Cookies.get('talentAuthToken');
-            this.setState({ jobData: id });
+            //var link = 'http://localhost:51689/listing/listing/' + jobStatus;  // paramater read FromBody
+            //var link = 'https://talentTalentService.azurewebsites.net/listing/listing/closeJob?id=' + id; // paramater from url
+            var link = 'https://talentTalentService.azurewebsites.net/listing/listing/' + jobStatus;
             $.ajax({
-                url: 'https://talentTalentService.azurewebsites.net/listing/listing/closeJob',
+                url: link,
                 headers: {
                     'Authorization': 'Bearer ' + cookies,
                     'Content-Type': 'application/json'
                 },
                 dataType: 'json',
-                type: "post",
-                data: JSON.stringify(this.state.jobData),
+                type: "POST",
+                data: JSON.stringify(id),
                 success: function (res) {
                     if (res.success == true) {
                         TalentUtil.notification.show(res.message, "success", null, null);
-
+                        //window.location = "/ManageJobs";
+                        this.props.reload(() => {
+                            console.log('Job has been ' + status + '!');
+                        });
                     } else {
                         TalentUtil.notification.show(res.message, "error", null, null)
                     }
@@ -67,14 +72,22 @@ export class JobCardsGroup extends React.Component {
             jobsContent = (
                 <div className='ui three cards'>
                     {
-                        jobsList.map((job) =>
+                        jobsList.map((job) => (
                             <Card key={job.id}>
                                 <Card.Content>
-                                    <Card.Header>{job.title}</Card.Header>
+                                    <Card.Header>{job.title}
+                                        {
+                                            job.status == 0 ? '' : (
+                                                <Label color='red' attached='top right'>
+                                                    Expired
+                                                </Label>
+                                            )
+                                        }
+                                    </Card.Header>
                                     <Label color='black' ribbon='right'>
                                         <Icon name='user' />
                                         0
-                                </Label>
+                                    </Label>
                                     <Card.Meta>{job.location.city}, {job.location.country}</Card.Meta>
                                     <Card.Description>
                                         {job.summary}
@@ -82,10 +95,7 @@ export class JobCardsGroup extends React.Component {
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div>
-                                        <Button color='red' size='mini'>
-                                            Expired
-                                        </Button>
-                                        <Button basic color='red' floated='right' size='mini' onClick={() => this.handleClose(job.id)} >
+                                        <Button basic color='red' floated='right' size='mini' onClick={() => this.handleStatus(job.id, "closed")} >
                                             <Icon name='dont' />
                                             close
                                         </Button>
@@ -101,10 +111,14 @@ export class JobCardsGroup extends React.Component {
                                                     {this.state.disabled ? 'copying...' : 'copy'}
                                             </Button>
                                         </a>
+                                        <Button basic positive floated='right' size='mini' onClick={() => this.handleStatus(job.id, "re-opened")} >
+                                            <Icon name='recycle' />
+                                            re-open
+                                        </Button>
                                     </div>
                                 </Card.Content>
                             </Card>
-                        )
+                        ))
                     }
                 </div>
             )

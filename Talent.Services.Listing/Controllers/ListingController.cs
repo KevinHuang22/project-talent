@@ -241,6 +241,30 @@ namespace Talent.Services.Listing.Controllers
             }
         }
 
+        [HttpPost("reopenJob")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "employer, recruiter")]
+        public async Task<IActionResult> ReopenJob([FromBody]string id)
+        {
+            try
+            {
+                //userId is either Employer or Recruiter
+                string userId = (await _jobService.GetJobByIDAsync(id)).EmployerID;
+
+                if (userId == _userAppContext.CurrentUserId)
+                {
+                    var jobStatus = JobStatus.Active;
+                    await _jobService.UpdateJobStatusAsync(id, jobStatus);
+                    return Json(new { Success = true, Message = "Job re-opened successfully" });
+                }
+                else
+                    return Json(new { Success = false, Message = "You are not authorised to update this job" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { Success = false, Message = "Error while updating job" });
+            }
+        }
+
         [HttpGet("getWatchlistIds")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "employer, recruiter")]
         public async Task<IActionResult> GetTalentWatchlistIds()
