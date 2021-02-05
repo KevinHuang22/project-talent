@@ -52,8 +52,8 @@ export default class EmployeeProfile extends React.Component {
     loadData() {
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            //url: 'https://talentProfileService.azurewebsites.net/profile/profile/getEmployerProfile',//Profile
-            url: 'https://talentProfileService.azurewebsites.net/profile/profile/getEmployerProfile',
+            //url: 'http://localhost:60290/profile/profile/getEmployerProfile',//Profile
+            url: 'http://localhost:60290/profile/profile/getEmployerProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -154,7 +154,7 @@ export default class EmployeeProfile extends React.Component {
 
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            url: 'https://talentProfileService.azurewebsites.net/profile/profile/saveEmployerProfile',//Profile
+            url: 'http://localhost:60290/profile/profile/saveEmployerProfile',//Profile
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
