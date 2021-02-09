@@ -244,7 +244,10 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <Skill
                                                 skillData={this.state.profileInitData.skills}
-                                                updateProfileData={this.updateAndSaveData}
+                                                updateProfileData={this.updateForComponentId}
+                                                saveProfileData={this.saveData}
+                                                deleteProfileData={this.updateAndSaveData}
+                                                componentId='skill'
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper

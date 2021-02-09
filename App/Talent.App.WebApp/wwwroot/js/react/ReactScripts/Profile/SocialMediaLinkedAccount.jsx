@@ -1,7 +1,7 @@
 ﻿/* Social media JSX */
 import React from 'react';
 import { ChildSingleInput } from '../Form/SingleInput.jsx';
-import { Popup, Button } from 'semantic-ui-react';
+import { Popup, Button, Icon } from 'semantic-ui-react';
 
 export default class SocialMediaLinkedAccount extends React.Component {
     constructor(props) {
@@ -104,12 +104,19 @@ export default class SocialMediaLinkedAccount extends React.Component {
             <div className='row'>
                 <div className='ui sixteen wide column'>
                     <React.Fragment>
-                        <a href={linkedIn}>
-                            <Button content='LinkedIn' icon='linkedin' primary />
-                        </a>
-                        <a href={github}>
-                            <Button content='GitHub' icon='github' secondary />
-                        </a>
+                        <Button primary >
+                            <a href={linkedIn} style={{ color: '#FFF' }} target="_blank">
+                                <Icon name='linkedin' />
+                                LinkedIn
+                            </a>
+                        </Button>
+                        <Button secondary >
+                            <a href={github} style={{ color: '#FFF' }} target="_blank">
+                                <Icon name='github' />
+                                GitHub
+                            </a>
+                        </Button>
+                        <Button secondary ><a href='http://www.google.com' style={{ color: '#FFF' }} target="_blank"><Icon name='google' />Google</a></Button>
                         <button type="button" className="ui right floated teal button" onClick={this.openEdit} >Edit</button>
                     </React.Fragment>
                 </div>

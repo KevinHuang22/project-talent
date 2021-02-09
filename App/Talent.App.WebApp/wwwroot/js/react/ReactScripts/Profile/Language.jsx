@@ -51,8 +51,6 @@ export default class Language extends React.Component {
         
     }
     init() {
-        let count = 0;
-        console.log(count++);
         let stateLanguagesList = [];
         const propsLanguages = TalentUtil.deepCopy(this.props.languageData);
 
@@ -61,8 +59,8 @@ export default class Language extends React.Component {
                 stateLanguagesList.push(Object.assign(languageItem, { isEditing: false }))//insert isEditing attribute to each row
                 
             }
-            console.log('stateLanguageslist: ')
-            console.log(stateLanguagesList);
+            //console.log('stateLanguageslist: ')
+            //console.log(stateLanguagesList);
         }
 
         this.setState({
@@ -118,9 +116,6 @@ export default class Language extends React.Component {
                 isEditing: false,
             },
         })
-        if (!id) {
-            
-        }
     }
 
     handleChange(event) {
