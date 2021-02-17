@@ -40,7 +40,10 @@ export default class AccountProfile extends React.Component {
             jobSeekingStatus: {
                 status: "",
                 availableDate: null
-            }
+            },
+            summary: '',
+            description: '',
+            
         }
         this.state = {
             profileInitData: profileData,
@@ -94,7 +97,7 @@ export default class AccountProfile extends React.Component {
         let newProfile = Object.assign({}, this.state.profileInitData, newValues)
         this.setState({
             profileToUpdate: newProfile
-        }, console.log(this.state.profileToUpdate))
+        })
     }
 
     saveData() {
@@ -115,13 +118,13 @@ export default class AccountProfile extends React.Component {
     }
 
     updateForComponentId(componentId, newValues) {
-        console.log('initialData before assign:')
-        console.log(this.state.profileInitData);
+        //console.log('initialData before assign:')
+        //console.log(this.state.profileInitData);
         let newData = Object.assign({}, this.state.profileInitData);
         newData[componentId] = newValues;
-        console.log('profileData after assign:')
-        console.log(this.state.profileInitData);
-        console.log(this.state.profileToUpdate);
+        //console.log('profileData after assign:')
+        //console.log(this.state.profileInitData);
+        //console.log(this.state.profileToUpdate);
         switch (componentId) {
             case 'nationality': {
                 //save the nationality immediately when user select a country
@@ -133,6 +136,16 @@ export default class AccountProfile extends React.Component {
                 //this.saveData(newData);
                 break;
             }
+            case 'selfIntroduction': {
+                let newProfile = Object.assign({}, this.state.profileInitData);
+                newProfile.summary = newValues.summary;
+                newProfile.description = newValues.description;
+                this.setState({
+                    profileToUpdate: newProfile,
+                    profileInitData: newProfile
+                })
+                break;
+            }
             default:{
                 this.updateWithoutSave(newData);
                 break;
@@ -141,7 +154,7 @@ export default class AccountProfile extends React.Component {
     }
 
     saveProfile(callback) {
-        //debugger
+        debugger;
         var cookies = Cookies.get('talentAuthToken');
         console.log(this.state.profileToUpdate);
         $.ajax({
@@ -332,11 +345,15 @@ export default class AccountProfile extends React.Component {
                                                 saveCVUrl={'http://localhost:60290/profile/profile/updateTalentCV'}
                                             />
                                         </FormItemWrapper>
+
                                         <SelfIntroduction
+                                            title='Description'
                                             summary={this.state.profileInitData.summary}
                                             description={this.state.profileInitData.description}
-                                            updateProfileData={this.updateAndSaveData}
-                                            updateWithoutSave={this.updateWithoutSave}
+                                            updateProfileData={this.updateForComponentId}
+                                            saveProfileData={this.saveData}
+                                            deleteProfileData={this.updateAndSaveData}
+                                            tooltip='Write the description of yourself'
                                         />
                                     </div>
                                 </form>

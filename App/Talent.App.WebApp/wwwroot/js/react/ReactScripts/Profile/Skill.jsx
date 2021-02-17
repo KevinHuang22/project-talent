@@ -58,7 +58,7 @@ export default class Skill extends React.Component {
             },
             hideAddSection: true,
             isInputError: false,
-            errorMessage: 'Please complete language or level fields.',
+            errorMessage: 'Please complete skill or level fields.',
             deleteConfirm: {
                 show: false,
                 skillItem: null
@@ -70,8 +70,8 @@ export default class Skill extends React.Component {
         this.openEdit = this.openEdit.bind(this);
         this.closeEdit = this.closeEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.saveSkill = this.saveSkill.bind(this)
-        this.showDeleteConfirm = this.showDeleteConfirm.bind(this)
+        this.saveSkill = this.saveSkill.bind(this);
+        this.showDeleteConfirm = this.showDeleteConfirm.bind(this);
     };
 
     openAdd() {
@@ -79,7 +79,7 @@ export default class Skill extends React.Component {
         this.setState({
             hideAddSection: false,
         })
-        this.closeEdit();
+        this.closeEdit(this.state.updateSkillItem.id);
     }
 
     closeAdd() {
@@ -164,7 +164,7 @@ export default class Skill extends React.Component {
             }
             this.setState({
                 userSkills: updatedSkillList,
-            })
+            },TalentUtil.notification.show("Profile updated sucessfully", "success", null, null))
         }
         else {
             this.setState({
@@ -200,7 +200,7 @@ export default class Skill extends React.Component {
             }
         }
         this.setState({
-            updatedSkillList: {
+            updateSkillItem: {
                 id: 0,
                 name: '',
                 level: '',
@@ -229,6 +229,7 @@ export default class Skill extends React.Component {
     deleteSkillItem() {
         //this.props.saveProfileData();
         this.showDeleteConfirm(false);
+        TalentUtil.notification.show("Profile updated sucessfully", "success", null, null)
     }
   
     render() {

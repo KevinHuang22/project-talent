@@ -73,7 +73,7 @@ export default class Language extends React.Component {
         this.setState({
             hideAddSection: false,
         })
-        this.closeEdit();
+        this.closeEdit(this.state.newLanguageData.id);
     }
 
     closeAdd() {

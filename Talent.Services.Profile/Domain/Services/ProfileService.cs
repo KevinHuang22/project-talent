@@ -136,6 +136,8 @@ namespace Talent.Services.Profile.Domain.Services
                 existingUser.ProfilePhoto = user.ProfilePhoto;
                 existingUser.ProfilePhotoUrl = user.ProfilePhotoUrl;
                 existingUser.LinkedAccounts = user.LinkedAccounts;
+                existingUser.Description = user.Description;
+                existingUser.Summary = user.Summary;
                 existingUser.UpdatedBy = updaterId;
                 existingUser.UpdatedOn = DateTime.Now;
 
