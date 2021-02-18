@@ -232,28 +232,14 @@ export class Nationality extends React.Component {
     constructor(props) {
         super(props)
 
-        //const nationality = props.nationalityData
-        //    ? this.props.nationalityData
-        //    : ""
-
-        //this.state = {
-        //    newNationality: nationality
-        //}
-
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
-        
-        let data = event.target.value
-        console.log(data);
+        let name = event.target.name;
+        let value = event.target.value;
 
-        //this.setState({
-        //    newNationality: data
-        //})
-        //console.log(this.state.newNationality);
-
-        this.props.saveProfileData(this.props.componentId, data)
+        this.props.saveProfileData({ [name]: value })
     }
     
     render() {

@@ -15,8 +15,8 @@ export default class Experience extends React.Component {
         const monthsList = ['Jan, ', 'Feb, ', 'March, ', 'April, ', 'May, ', 'June, ', 'July, ', 'Aug, ', 'Sept, ', 'Oct, ', 'Nov, ', 'Dec, '];
 
         const initData = [
-            { id: 1, company: 'company1', position: 'Software Developer', responsibilities: 'Develop Web Applications', start: new Date('2021-03-01'), end: new Date() },
-            { id: 2, company: 'company2', position: 'Software Developer', responsibilities: 'Develop Web Applications', start: new Date('2021-03-23'), end: new Date() },
+            { id: 1, company: 'company1', position: 'Software Developer', responsibilities: 'Develop Web Applications', start: new Date('2021-01-01'), end: new Date() },
+            { id: 2, company: 'company2', position: 'Software Developer', responsibilities: 'Develop Web Applications', start: new Date('2021-01-23'), end: new Date() },
         ]
 
         this.state = {

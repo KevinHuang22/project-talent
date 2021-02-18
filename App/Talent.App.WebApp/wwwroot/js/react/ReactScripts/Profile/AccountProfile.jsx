@@ -94,9 +94,10 @@ export default class AccountProfile extends React.Component {
     }
     //updates component's state without saving data
     updateWithoutSave(newValues) {
+        //debugger;
         let newProfile = Object.assign({}, this.state.profileInitData, newValues)
         this.setState({
-            profileToUpdate: newProfile
+            profileToUpdate: newProfile,
         })
     }
 
@@ -109,12 +110,13 @@ export default class AccountProfile extends React.Component {
 
     //updates component's state and saves data
     updateAndSaveData(newValues) {
+        //debugger;
         let newProfile = Object.assign({}, this.state.profileInitData, newValues)
         console.log(newProfile)
             this.setState({
                 profileToUpdate: newProfile,
                 profileInitData: newProfile
-            }, this.saveProfile(() => { }))
+            }, () => this.saveData())
     }
 
     updateForComponentId(componentId, newValues) {
@@ -126,11 +128,6 @@ export default class AccountProfile extends React.Component {
         //console.log(this.state.profileInitData);
         //console.log(this.state.profileToUpdate);
         switch (componentId) {
-            case 'nationality': {
-                //save the nationality immediately when user select a country
-                this.updateAndSaveData(newData)
-                break;
-            }
             case 'languages': {
                 this.updateWithoutSave(newData);
                 //this.saveData(newData);
@@ -235,8 +232,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <Nationality
                                                 nationalityData={this.state.profileInitData.nationality}
-                                                saveProfileData={this.updateForComponentId}
-                                                componentId='nationality'
+                                                saveProfileData={this.updateAndSaveData}
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper

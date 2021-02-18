@@ -75,7 +75,6 @@ export default class SelfIntroduction extends React.Component {
                             <ChildSingleInput
                                 inputType="text"
                                 name="summary"
-                                //value={this.props.summary}
                                 value={summaryDetail}
                                 controlFunc={this.update}
                                 maxLength={150}
@@ -94,7 +93,6 @@ export default class SelfIntroduction extends React.Component {
                                 maxLength={descriptionLimit}
                                 value={descriptionDetail}
                                 name="description"
-                                //value={this.props.description}
                                 placeholder="Please tell us about any hobbies, additional expertise, or anything else you’d like to add."
                                 onChange={this.update} >
                             </textarea>
