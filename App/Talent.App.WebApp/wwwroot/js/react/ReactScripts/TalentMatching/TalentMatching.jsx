@@ -85,20 +85,20 @@ export default class TalentMatching extends React.Component {
         
     //loadSelectedJob(data) url: 'https://talentTalentService.azurewebsites.net/listing/listing/getJobForTalentMatching',
 
-    //loadTalentList()  url: 'http://localhost:60290/profile/profile/getTalentList',
+    //loadTalentList()  url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getTalentList',
 
-    //loadTalentFilterList() //url: 'http://localhost:60290/profile/profile/getTalentListFilter',
+    //loadTalentFilterList() //url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getTalentListFilter',
 
-    //loadEmployerFilterList() //url: 'http://localhost:60290/profile/profile/getEmployerListFilter',
+    //loadEmployerFilterList() //url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getEmployerListFilter',
 
 
-    // loadEmployerList() // url: 'http://localhost:60290/profile/profile/getEmployerList',
-    //loadSuggestionList   url: 'http://localhost:60290/profile/profile/getSuggestionList',
+    // loadEmployerList() // url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getEmployerList',
+    //loadSuggestionList   url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getSuggestionList',
 
-   // saveCompanyTalents()   url: 'http://localhost:60290/profile/profile/addTalentSuggestions',
+   // saveCompanyTalents()   url: 'https://talentprofileservice.azurewebsites.net/profile/profile/addTalentSuggestions',
      
 
-    //saveJobTalents()    url: 'http://localhost:60290/profile/profile/addTalentSuggestions',
+    //saveJobTalents()    url: 'https://talentprofileservice.azurewebsites.net/profile/profile/addTalentSuggestions',
        
 
     

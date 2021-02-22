@@ -116,7 +116,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
                                 GitHub
                             </a>
                         </Button>
-                        <Button secondary ><a href='http://www.google.com' style={{ color: '#FFF' }} target="_blank"><Icon name='google' />Google</a></Button>
+                        <Button color='google plus' ><a href=' http://www.google.com' style={{ color: '#FFF' }} target="_blank"><Icon name='google plus' />Google</a></Button>
                         <button type="button" className="ui right floated teal button" onClick={this.openEdit} >Edit</button>
                     </React.Fragment>
                 </div>

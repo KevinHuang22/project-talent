@@ -33,6 +33,7 @@ export default class AccountProfile extends React.Component {
             visaStatus: '',
             visaExpiryDate: '',
             profilePhoto: '',
+            profilePhotoUrl: '',
             linkedAccounts: {
                 linkedIn: "",
                 github: ""
@@ -74,7 +75,7 @@ export default class AccountProfile extends React.Component {
     loadData() {
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/getTalentProfile',
+            url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getTalentProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -155,7 +156,7 @@ export default class AccountProfile extends React.Component {
         var cookies = Cookies.get('talentAuthToken');
         console.log(this.state.profileToUpdate);
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/updateTalentProfile',
+            url: 'https://talentprofileservice.azurewebsites.net/profile/profile/updateTalentProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -299,7 +300,7 @@ export default class AccountProfile extends React.Component {
                                         </FormItemWrapper>
                                         <FormItemWrapper
                                             title='Status'
-                                            tooltip='What is your current status in jobseeking?'
+                                            tooltip='What is your current status in job seeking?'
                                         >
                                             <TalentStatus
                                                 status={this.state.profileInitData.jobSeekingStatus}
@@ -315,7 +316,7 @@ export default class AccountProfile extends React.Component {
                                             <PhotoUpload
                                                 imageId={this.state.profileInitData.profilePhotoUrl}
                                                 updateProfileData={this.updateWithoutSave}
-                                                savePhotoUrl='http://localhost:60290/profile/profile/updateProfilePhoto'
+                                                savePhotoUrl='https://talentprofileservice.azurewebsites.net/profile/profile/updateProfilePhoto'
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
@@ -326,7 +327,7 @@ export default class AccountProfile extends React.Component {
                                             <VideoUpload
                                                 videoName={this.state.profileInitData.videoName}
                                                 updateProfileData={this.updateWithoutSave}
-                                                saveVideoUrl={'http://localhost:60290/profile/profile/updateTalentVideo'}
+                                                saveVideoUrl={'https://talentprofileservice.azurewebsites.net/profile/profile/updateTalentVideo'}
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper
@@ -338,7 +339,7 @@ export default class AccountProfile extends React.Component {
                                                 cvName={this.state.profileInitData.cvName}
                                                 cvUrl={this.state.profileInitData.cvUrl}
                                                 updateProfileData={this.updateWithoutSave}
-                                                saveCVUrl={'http://localhost:60290/profile/profile/updateTalentCV'}
+                                                saveCVUrl={'https://talentprofileservice.azurewebsites.net/profile/profile/updateTalentCV'}
                                             />
                                         </FormItemWrapper>
 

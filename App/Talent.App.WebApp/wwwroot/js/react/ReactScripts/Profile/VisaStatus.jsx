@@ -125,7 +125,7 @@ export default class VisaStatus extends React.Component {
         let visaExpiryDate = this.props.visaExpiryDate && this.state.expiryDate.length == 0
             ? (new Date(this.props.visaExpiryDate)).toLocaleDateString('en-NZ').toString()
             : this.state.expiryDate
-        console.log(visaExpiryDate);
+        //console.log(visaExpiryDate);
         //let dateFormat = require("dateformat");
         //visaExpiryDate = dateFormat(visaExpiryDate, "yyyy-MM-dd");
 
