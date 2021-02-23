@@ -11668,6 +11668,12 @@ img.ui.bordered.image {
     border-radius: 500rem;
 }
 
+.ui.profile.photo.image {
+    width: 150px;
+    height: 150px;
+    font-size: 0.92857143rem;
+}
+
 /*-------------------
        Spaced
 --------------------*/
