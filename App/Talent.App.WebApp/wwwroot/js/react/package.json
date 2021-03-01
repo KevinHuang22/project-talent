@@ -5,13 +5,11 @@
   "main": "app.js",
   "dependencies": {
     "draft-js": "^0.10.5",
-    "moment": "^2.22.2",
-    "react": "^16.3.2",
+    "moment": "^2.29.1",
     "react-ckeditor-component": "^1.1.0",
-    "react-datepicker": "^1.6.0",
-    "react-dom": "^16.3.2",
-    "react-player": "^1.5.1",
-    "react-router-dom": "^4.2.2"
+    "react-datepicker": "^1.8.0",
+    "react-player": "^1.15.3",
+    "react-router-dom": "^4.3.1"
   },
   "scripts": {
     "build": "webpack"
@@ -20,16 +18,16 @@
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "fetch": "^1.1.0",
-    "js-cookie": "^2.2.0",
-    "query-string": "^6.2.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-tag-input": "^5.0.2",
-    "semantic-ui-react": "^0.81.3",
+    "js-cookie": "^2.2.1",
+    "query-string": "^6.14.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-tag-input": "^5.2.3",
+    "semantic-ui-react": "^2.0.3",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.1.2"
   }
