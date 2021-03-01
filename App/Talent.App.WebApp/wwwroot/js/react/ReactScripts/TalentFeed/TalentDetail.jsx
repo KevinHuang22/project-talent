@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie'
 import { BodyWrapper, loaderData } from '../Layout/BodyWrapper.jsx'
-import TalentCardDetail from '../TalentFeed/TalentCardDetail.jsx';
+import TalentCard from '../TalentFeed/TalentCard.jsx';
 import CompanyProfile from '../TalentFeed/CompanyProfile.jsx';
 import FollowingSuggestion from '../TalentFeed/FollowingSuggestion.jsx';
 
