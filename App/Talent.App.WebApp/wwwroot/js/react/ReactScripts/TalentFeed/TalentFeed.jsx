@@ -68,6 +68,30 @@ export default class TalentFeed extends React.Component {
                     employerData = res.employer
                     console.log("employerData", employerData)
                 }
+                let feed = {
+                    position: 2,
+                    number:3
+                }
+                console.log(feed);
+                $.ajax({
+                    url: 'https://talentprofileservice.azurewebsites.net/profile/profile/getTalent',
+                    headers: {
+                        'Authorization': 'Bearer ' + cookies,
+                        'Content-Type': 'application/json'
+                    },
+                    type: "POST",
+                    data: JSON.stringify(feed),
+                    success: function (res) {
+                        let talentData = null;
+                        if (res.talent) {
+                            talentData = res.talent
+                            console.log("talentData", talentData)
+                        }
+                    }.bind(this),
+                    error: function (res) {
+                        console.log(res.status)
+                    }
+                })
                 callback(employerData);
             }.bind(this),
             error: function (res) {

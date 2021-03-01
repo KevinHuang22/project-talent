@@ -449,9 +449,9 @@ namespace Talent.Services.Profile.Controllers
             return Json(new { Success = false });
         }
 
-        [HttpGet("getTalent")]
+        [HttpPost("getTalent")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "recruiter, employer")]
-        public async Task<IActionResult> GetTalentSnapshots(FeedIncrementModel feed)
+        public async Task<IActionResult> GetTalentSnapshots([FromBody]FeedIncrementModel feed)
         {
             try
             {
