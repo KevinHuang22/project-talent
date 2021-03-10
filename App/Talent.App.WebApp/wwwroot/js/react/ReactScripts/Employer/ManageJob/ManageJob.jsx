@@ -60,8 +60,8 @@ export default class ManageJob extends React.Component {
     //define a function which requires a callback function as paramater
     //this callback function is called inside the succeed/error block
     loadData(callback) {
-        //var link = 'http://localhost:51689/listing/listing/getemployerjobs';
-        var link = 'https://talentTalentService.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
+        //var link = 'https://talenttalentservice.azurewebsites.net/listing/listing/getemployerjobs';
+        var link = 'https://talenttalentservice.azurewebsites.net/listing/listing/getEmployerJobs';//Talent
         var cookies = Cookies.get('talentAuthToken');
        // your ajax call and other logic goes here
         $.ajax({

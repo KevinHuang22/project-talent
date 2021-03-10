@@ -37,9 +37,9 @@ export class JobCardsGroup extends React.Component {
             return;
         else {
             var cookies = Cookies.get('talentAuthToken');
-            //var link = 'http://localhost:51689/listing/listing/' + jobStatus;  // paramater read FromBody
-            //var link = 'https://talentTalentService.azurewebsites.net/listing/listing/closeJob?id=' + id; // paramater from url
-            var link = 'https://talentTalentService.azurewebsites.net/listing/listing/' + jobStatus;
+            //var link = 'https://talenttalentservice.azurewebsites.net/listing/listing/' + jobStatus;  // paramater read FromBody
+            //var link = 'https://talenttalentservice.azurewebsites.net/listing/listing/closeJob?id=' + id; // paramater from url
+            var link = 'https://talenttalentservice.azurewebsites.net/listing/listing/' + jobStatus;
             $.ajax({
                 url: link,
                 headers: {

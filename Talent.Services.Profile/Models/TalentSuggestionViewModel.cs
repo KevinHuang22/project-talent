@@ -6,6 +6,9 @@ using Talent.Common.Models;
 
 namespace Talent.Services.Profile.Models
 {
+    /// <summary>
+    /// this service is serving for talents' profiles which shown in the middle of talent feed page
+    /// </summary>
     public class TalentSuggestionViewModel
     {
         public string Id { get; set; }
@@ -22,6 +25,6 @@ namespace Talent.Services.Profile.Models
         public string Education { get; set; }
         public string CvUrl { get; set; }
         public string VideoUrl { get; set; }
-        public LinkedAccounts LinkedAccounts { get; set; } 
+        public LinkedAccounts LinkedAccounts { get; set; }
     }
 }
