@@ -51,7 +51,8 @@ namespace Talent.Services.Talent.Domain.Services
         }
         public async Task<IEnumerable<Job>> GetEmployerJobsAsync(string employerId)
         {
-            return await _jobRepository.Get(x => x.EmployerID == employerId);
+            var jobsList = await _jobRepository.Get(x => x.EmployerID == employerId);
+            return jobsList;
         }
 
         public async Task UpdateJobStatusAsync(string jobId, JobStatus status)

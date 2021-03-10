@@ -26,9 +26,9 @@ export default class CompanyProfile extends React.Component {
     }
 
     render() {
-        let companyName = this.props.companyData ? this.props.companyData.companyContact.name : ""
-        let email = this.props.companyData ? this.props.companyData.companyContact.email : ""
-        let phone = this.props.companyData ? this.props.companyData.companyContact.phone : ""
+        let companyName = this.props.companyData.companyContact ? this.props.companyData.companyContact.name : ""
+        let email = this.props.companyData.companyContact ? this.props.companyData.companyContact.email : ""
+        let phone = this.props.companyData.companyContact ? this.props.companyData.companyContact.phone : ""
         let location = { city: '', country: '' }
         if (this.props.companyData.companyContact && this.props.companyData.companyContact.location) {
             location = this.props.companyData.companyContact.location
@@ -36,6 +36,8 @@ export default class CompanyProfile extends React.Component {
         let profilePhotoUrl = this.props.companyData.profilePhotoUrl ? this.props.companyData.profilePhotoUrl : 'https://react.semantic-ui.com/images/wireframe/image.png'
 
         return (
+            !this.props.loading
+            ?
             <Card>
                 <Card.Content className='center aligned'>
                     <Card.Header>
@@ -49,7 +51,7 @@ export default class CompanyProfile extends React.Component {
                         </div>
                         {companyName}
                     </Card.Header>
-                    <Card.Meta><Icon name='map marker alternate' /> {location.city}, {location.country}</Card.Meta>
+                    <Card.Meta><Icon name='point' /> {location.city}, {location.country}</Card.Meta>
                     <Card.Description>
                         We currently do not have specific skills that we desire.
                     </Card.Description>
@@ -58,7 +60,9 @@ export default class CompanyProfile extends React.Component {
                     <Card.Meta><Icon name='phone' /> : {phone} </Card.Meta>
                     <Card.Meta><Icon name='mail' /> : {email}</Card.Meta>
                 </Card.Content>
-            </Card>
+            </Card>        
+            :
+            <Loader active inline='centered' />
         )
     }
 }

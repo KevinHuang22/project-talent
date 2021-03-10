@@ -8,8 +8,12 @@ export default class TalentCard extends React.Component {
     constructor(props) {
         super(props);
 
+        const talentData = props.talentData ?
+            Object.assign([], props.talentData)
+            : []
+
         this.state = {
-            talentDetial: true,
+            talentData,
             showVideo: true,
         }
 
@@ -17,76 +21,68 @@ export default class TalentCard extends React.Component {
 
     switch() {
         let showVideo = this.state.showVideo;
-        console.log(showVideo)
         this.setState({
             showVideo: !showVideo
         })
     }
 
-    renderDetail() {
+    render() {
+        let talentData = this.props.talentData
         return (
-            <Card fluid>
+            <Card fluid >
                 <Card.Content>
-                    <Icon name='star' className='right floated' size='large'/>
+                    <Icon name='star' className='right floated' size='large' />
                     <Card.Header>
-                        Ru(Talent) Ng
-                        </Card.Header>
+                        {talentData.name}
+                    </Card.Header>
                 </Card.Content>
 
                 {
                     this.state.showVideo
                         ?
-                        <TalentCardVideo />
+                        <TalentCardVideo videoData={talentData.videoUrl} />
                         :
-                        <TalentCardDetail />
+                        <TalentCardDetail
+                            profilePhoto={talentData.photoId}
+                            currentEmployer={talentData.currentEmployment}
+                            position={talentData.level}
+                            visaStatus={talentData.visaStatus}
+                        />
                 }
-                
+
                 <Card.Content>
                     <Grid columns='equal' textAlign='center'>
                         <Grid.Row>
                             <Grid.Column>
-                            {
-                                this.state.showVideo
-                                    ?
-                                    <a onClick={() => this.switch()}><Icon name='user' size='large'/></a>
-                                    :
-                                    <a onClick={()=>this.switch()}><Icon name='video' size='large'/></a>
-                            }
+                                {
+                                    this.state.showVideo
+                                        ?
+                                        <a onClick={() => this.switch()}><Icon name='user' size='large' /></a>
+                                        :
+                                        <a onClick={() => this.switch()}><Icon name='video' size='large' /></a>
+                                }
                             </Grid.Column>
                             <Grid.Column>
-                                <a><Icon name='file pdf outline' size='large'/></a>
+                                <a href={talentData.cvUrl}><Icon name='file pdf outline' size='large' /></a>
                             </Grid.Column>
                             <Grid.Column>
-                                <a><Icon name='linkedin' size='large'/></a>
+                                <a><Icon name='linkedin' size='large' /></a>
                             </Grid.Column>
                             <Grid.Column>
-                                <a><Icon name='github' size='large'/></a>
+                                <a><Icon name='github' size='large' /></a>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button basic color='blue' content='C#' size='mini' />
+                    {
+                        talentData.skills.map(skill => {
+                            <Button key={skill.id} basic color='blue' content={skill.skill} size='mini' />
+                        })
+                    }
                 </Card.Content>
             </Card>
-        )
-    }
-
-
-    
-    render() {
-
-        return (
-            <div>
-                {
-                    this.state.talentDetial
-                        ?
-                        this.renderDetail()
-                        :
-                        <p align='center'><b>There are no talents found for your recruitment company</b></p>
-                }
-            </div>
-        )
+        )       
     }
 }
 

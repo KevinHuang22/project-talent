@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Talent.Services.Profile.Models
 {
+    /// <summary>
+    /// these class models are for recruiter to suggest talent to companys
+    /// </summary>
     public class AddTalentSuggestion
     {
         public string TalentId { get; set; }

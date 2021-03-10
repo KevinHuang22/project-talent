@@ -1,17 +1,17 @@
-﻿using Talent.Common.Contracts;
-using Talent.Common.Models;
-using Talent.Services.Profile.Domain.Contracts;
-using Talent.Services.Profile.Models.Profile;
+﻿using Microsoft.AspNetCore.Http;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using Talent.Services.Profile.Models;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+using Talent.Common.Contracts;
+using Talent.Common.Models;
 using Talent.Common.Security;
+using Talent.Services.Profile.Domain.Contracts;
+using Talent.Services.Profile.Models;
+using Talent.Services.Profile.Models.Profile;
 
 namespace Talent.Services.Profile.Domain.Services
 {
@@ -52,11 +52,11 @@ namespace Talent.Services.Profile.Domain.Services
         public async Task<TalentProfileViewModel> GetTalentProfile(string Id)
         {
             //Your code here;
-            User profile = null;
+            //User profile = null;
             var videoUrl = "";
             var cvUrl = "";
 
-            profile = (await _userRepository.GetByIdAsync(Id));
+            User profile = (await _userRepository.GetByIdAsync(Id));
 
             if (profile != null)
             {
@@ -420,8 +420,72 @@ namespace Talent.Services.Profile.Domain.Services
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(string employerOrJobId, bool forJob, int position, int increment)
         {
             //Your code here;
+            Employer employer = null;
 
-            throw new NotImplementedException();
+            var watchList = new List<TalentSnapshotViewModel>();
+
+            employer = (await _employerRepository.GetByIdAsync(employerOrJobId));
+            User profile = null;
+            profile = (await _userRepository.GetByIdAsync("6000bab71e0f780eb4d45f52"));
+
+            if (employer != null)
+            {
+                //var talentWatchList = employer.TalentWatchlist;
+                IEnumerable<User> talents = null;
+
+                talents = (await _userRepository.Get(x => !x.IsDeleted));
+                
+                talents = talents.Skip(position).Take(increment);
+                
+                foreach (var talent in talents)
+                {
+                    //var catchAll = talent.CatchAll.GetElement("UserType").Value;
+
+                    if (talent.CatchAll == null || talent.CatchAll.GetElement("UserType").Value != "Talent")
+                    {
+                        continue;
+                    }
+                    var videoUrl = "";
+                    if (talent != null)
+                    {
+                        videoUrl = string.IsNullOrWhiteSpace(talent.VideoName)
+                          ? ""
+                          : await _fileService.GetFileURL(talent.VideoName, FileType.UserVideo);
+
+                        var skills = talent.Skills.Select(x => ViewModelFromSkill(x).Name).ToList();
+
+                        UserExperience latest = talent.Experience.OrderByDescending(x => x.End).FirstOrDefault();
+
+                        string level, employment;
+                        if (latest != null)
+                        {
+                            level = latest.Position;
+                            employment = latest.Company;
+                        }
+                        else
+                        {
+                            level = "Unknown";
+                            employment = "Unknown";
+                        }
+                        var talentProfileView = new TalentSnapshotViewModel
+                        {
+                            Id = talent.Id,
+                            Name = talent.FirstName,
+                            PhotoId = talent.ProfilePhotoUrl,
+                            Summary = talent.Summary,
+                            VideoUrl = videoUrl,
+                            CVUrl = "",
+                            CurrentEmployment = employment,
+                            Visa = talent.VisaStatus,
+                            Level = level,
+                            Skills = skills,
+                        };
+                        watchList.Add(talentProfileView);
+                    }
+                }
+                return watchList;
+            }
+            return null;
         }
 
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(IEnumerable<string> ids)

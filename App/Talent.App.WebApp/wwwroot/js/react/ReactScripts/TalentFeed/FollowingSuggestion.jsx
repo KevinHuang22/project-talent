@@ -2,6 +2,18 @@
 
 
 export default class FollowingSuggestion extends React.Component {
+    constructor(props) {
+        super(props);
+
+        let suggestionList
+
+        this.state = {
+            
+        }
+
+
+    };
+
     render() {
         return (
             <div className='ui card'>

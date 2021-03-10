@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Talent.Common.Models
 {
+    //[BsonIgnoreExtraElements]
     public class User : IMongoCommon
     {
         public Guid UId { get; set; }
@@ -50,6 +51,9 @@ namespace Talent.Common.Models
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
         public Login Login { get; set; }
+
+        [BsonExtraElements]
+        public BsonDocument CatchAll { get; set; }
 
         public User()
         {

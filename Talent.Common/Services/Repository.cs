@@ -68,7 +68,8 @@ namespace Talent.Common.Services
             {
                 try
                 {
-                    return _collection.AsQueryable().Where(predicate).AsEnumerable();
+                    var collection = _collection.AsQueryable().Where(predicate).AsEnumerable();
+                    return collection;
                 }
                 catch (MongoException e)
                 {

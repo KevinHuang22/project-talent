@@ -10,12 +10,18 @@ export class TalentCardDetail extends React.Component {
     };
 
     render() {
+
+        let profilePhoto = this.props.profilePhoto ? this.props.profilePhoto : 'https://react.semantic-ui.com/images/avatar/large/steve.jpg';
+        let currentEmployer = this.props.currentEmployer ? this.props.currentEmployer : "Unknown";
+        let position = this.props.position ? this.props.position : "Unknown";
+        let visaStatus = this.props.visaStatus ? this.props.visaStatus : "Unknown";
         return (
             <Grid>
                 <Grid.Column width={8}>
                     <Image
                         size='large'
-                        src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
+                        src={profilePhoto}
+                        alt="no image"
                     />
                 </Grid.Column>
                 <Grid.Column width={8}>
@@ -24,18 +30,18 @@ export class TalentCardDetail extends React.Component {
                         <br />
                         <label><b>CURRENT EMPLOYER</b></label>
                         <Card.Description>
-                            ABC
-                            </Card.Description>
+                            {currentEmployer}
+                        </Card.Description>
                         <br />
                         <label><b>VISA STATUS</b></label>
                         <Card.Description>
-                            Citizen
-                            </Card.Description>
+                            {visaStatus}
+                        </Card.Description>
                         <br />
                         <label><b>POSITION</b></label>
                         <Card.Description>
-                            Software developer
-                            </Card.Description>
+                            {position}
+                        </Card.Description>
                     </Card.Content>
                 </Grid.Column>
             </Grid>    
